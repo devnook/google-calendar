@@ -1,0 +1,112 @@
+<!--
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE
+The complete set of authors may be found at http://polymer.github.io/AUTHORS
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS
+-->
+<link rel="import" href="../core-shared-lib/core-shared-lib.html">
+
+<!--
+Dynamically loads the Google Client JavaScript API, firing the `api-load` event when ready.
+
+Any number of components can use `<google-client-api>` elements, and the library will only be loaded once.
+
+@element google-client-api
+-->
+<polymer-element name="google-client-api" extends="core-shared-lib">
+<script>
+  Polymer({
+    defaultUrl: 'https://apis.google.com/js/client.js?onload=%%callback%%',
+    notifyEvent: 'api-load',
+    get api() {
+      return gapi.client;
+    }
+  });
+</script>
+</polymer-element>
+
+<!--
+Dynamically loads the legacy Google JavaScript API Loader (https://developers.google.com/loader/),
+firing the `api-load` event when ready.
+
+Any number of components can use `<google-jsapi>` elements, and the library will only be loaded once.
+
+@element google-jsapi
+-->
+<polymer-element name="google-jsapi" extends="core-shared-lib">
+<script>
+  Polymer({
+    defaultUrl: 'https://www.google.com/jsapi?callback=%%callback%%',
+    notifyEvent: 'api-load',
+    get api() {
+      return google;
+    }
+  });
+</script>
+</polymer-element>
+
+<!--
+Dynamically loads the Google+ JavaScript API, firing the `api-load` event when ready.
+
+Any number of components can use `<google-plusone-api>` elements, and the library will only be loaded once.
+
+@element google-plusone-api
+-->
+<polymer-element name="google-plusone-api" extends="core-shared-lib">
+<script>
+  Polymer({
+    defaultUrl: 'https://apis.google.com/js/plusone.js?onload=%%callback%%',
+    notifyEvent: 'api-load',
+    get api() {
+      return gapi.hangout;
+    }
+  });
+</script>
+</polymer-element>
+
+<!--
+Dynamically loads the Google Youtube Iframe API, firing the `api-load` event when ready.
+
+Any number of components can use `<google-youtube-api>` elements, and the library will only be loaded once.
+
+@element google-youtube-api
+-->
+<polymer-element name="google-youtube-api" extends="core-shared-lib">
+<script>
+  Polymer({
+    defaultUrl: 'https://www.youtube.com/iframe_api',
+    notifyEvent: 'api-load',
+    callbackName: 'onYouTubeIframeAPIReady',
+    get api() {
+      return YT;
+    }
+  });
+</script>
+</polymer-element>
+
+<!--
+Dynamically loads the Google Maps JavaScript API, firing the `api-load` event when ready.
+
+Any number of components can use `<google-maps-api>` elements, and the library will only be loaded once.
+
+@element google-maps-api
+-->
+<polymer-element name="google-maps-api" extends="core-shared-lib" attributes="version sensor">
+<script>
+  Polymer({
+    defaultUrl: 'https://maps.googleapis.com/maps/api/js?libraries=places&callback=%%callback%%',
+    version: '3.exp',
+    sensor: false,
+    notifyEvent: 'api-load',
+    ready: function() {
+      this.url = this.defaultUrl + '&v=' + this.version + '&sensor=' + this.sensor;
+    },
+    get api() {
+      return google.maps;
+    }
+  });
+</script>
+</polymer-element>
+

@@ -1,0 +1,8 @@
+{
+  "name": "google-signin",
+  "version": "0.0.6",
+  "dependencies": {
+    "polymer": "Polymer/polymer#master",
+    "google-apis": "PolymerLabs/google-apis"
+  }
+}
